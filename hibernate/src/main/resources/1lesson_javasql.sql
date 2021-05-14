@@ -27,3 +27,20 @@ insert into comment (id, user_id, text)
 values (1,1,'my comment 1'),
        (2,2,'my comment 2'),
        (3,1,'my comment 1 2')
+
+-- HIBERNATE
+create table users
+(
+    id   integer not null
+        constraint users_pkey
+            primary key,
+    name varchar(255)
+);
+
+create table car
+(
+    id    serial not null
+        constraint car_pkey
+            primary key,
+    model varchar(100)
+);

@@ -8,6 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.java.courses.lesson1.hibernate.dao.CarDao;
 import org.java.courses.lesson1.hibernate.model.Car;
 import org.java.courses.lesson1.hibernate.model.City;
 import org.java.courses.lesson1.hibernate.model.User;
@@ -18,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
 //        createXMLContext();
         createAnnotationContext();
+        useCarDao();
     }
 
     public static void createXMLContext() {
@@ -45,12 +47,12 @@ public class Main {
 
         SessionFactory sessionFactory = meta.getSessionFactoryBuilder().build();
 
-        Session session = sessionFactory.openSession();
-        List<Car> cars = session.createQuery("FROM Car", Car.class).list();
-
-        // Closing The Session Object
-        session.close();
-        System.out.println(cars);
+//        Session session = sessionFactory.openSession();
+//        List<Car> cars = session.createQuery("FROM Car", Car.class).list();
+//
+//        // Closing The Session Object
+//        session.close();
+//        System.out.println(cars);
     }
 
     // Method 1: This Method Used To Create A New Car Record In The Database Table
@@ -67,5 +69,20 @@ public class Main {
         // Closing The Session Object
         session.close();
         return record;
+    }
+
+    public static void useCarDao() {
+        //CREATE
+        CarDao carDao = CarDao.create();
+        Car car = carDao.createRecord(new Car("нива"));
+
+        carDao.acceptToAll(car1 -> {
+            if (car1.getModel().equals("нива")) {
+                car1.setModel("жигули");
+            }
+        });
+
+        car = carDao.findRecordById(car.getId());
+        System.out.println(car.getModel());
     }
 }

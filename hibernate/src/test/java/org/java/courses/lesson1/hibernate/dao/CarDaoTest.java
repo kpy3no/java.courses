@@ -36,4 +36,31 @@ class CarDaoTest {
         car = carDao.findRecordById(car.getId());
         assertNull(car);
     }
+
+    @Test
+    public void findCheck() {
+        //CREATE
+        Car car = carDao.createRecord(new Car("нива"));
+        assertNotNull(car.getId());
+
+        //FIND BY ID
+        car = carDao.findRecordById(car.getId());
+        assertEquals("нива", car.getModel());
+    }
+
+    @Test
+    public void checkConsumerDao() {
+        //CREATE
+        Car car = carDao.createRecord(new Car("нива"));
+        assertNotNull(car.getId());
+
+        carDao.acceptToAll(car1 -> {
+            if (car1.getModel().equals("нива")) {
+                car1.setModel("жигули");
+            }
+        });
+
+        car = carDao.findRecordById(car.getId());
+        assertEquals("жигули", car.getModel());
+    }
 }

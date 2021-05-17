@@ -1,0 +1,21 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+<persistence-unit name="org.java.courses_entitymanager">
+    <description>Hibernate EntityManager Demo</description>
+    <class>org.java.courses.lesson1.hibernate.model.Car</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+
+        <!-- Database Connection Settings -->
+        <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+        <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5434/testdb"/>
+        <property name="hibernate.connection.username" value="postgres"/>
+        <property name="hibernate.connection.password" value=""/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+</persistence-unit>
+</persistence>

@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CarDao {
     public final static Logger logger = LoggerFactory.getLogger(CarDao.class);
@@ -105,5 +106,24 @@ public class CarDao {
         session.close();
 
         return car;
+    }
+
+    public void acceptToAll(Consumer<Car> consumer) {
+        Session session = sessionFactory.openSession();
+        List<Car> cars = session.createQuery("FROM Car", Car.class).list();
+
+        Transaction transaction = session.beginTransaction();
+        try {
+            cars.forEach(car -> {
+                consumer.accept(car);
+                session.merge(car);
+            });
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+        // Closing The Session Object
+        session.close();
     }
 }

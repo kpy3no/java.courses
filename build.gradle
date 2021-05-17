@@ -4,10 +4,4 @@ allprojects {
     repositories {
         mavenCentral()
     }
-
-    apply plugin: 'java'
-
-    test {
-        useJUnitPlatform()
-    }
 }

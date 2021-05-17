@@ -1,2 +1,4 @@
 rootProject.name = 'java.courses'
 include 'hibernate'
+include 'db'
+

@@ -3,8 +3,10 @@ package org.java.courses.lesson2.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.java.courses.lesson2.Identified;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,12 +21,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "contact_info")
-public class ContactInfo {
+public class ContactInfo implements Identified {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 20, nullable = false)
     private String email;

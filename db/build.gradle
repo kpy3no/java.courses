@@ -2,23 +2,11 @@ plugins {
     id 'org.liquibase.gradle' version '2.0.4'
 }
 
-apply plugin: 'base'
-apply plugin: 'java'
-
 dependencies {
     liquibaseRuntime 'org.postgresql:postgresql:42.0.0'
     liquibaseRuntime 'org.liquibase:liquibase-core:3.8.9'
     //Чтобы жидкий (liquibase) мог читать конфигурацию в формате yaml.
     liquibaseRuntime 'org.yaml:snakeyaml:1.26'
-}
-
-
-sourceSets {
-    test {
-        resources {
-            srcDir('liquibase')
-        }
-    }
 }
 
 liquibase {
@@ -52,4 +40,3 @@ task liquibasePackage {
         }
     }
 }
-assemble.dependsOn liquibasePackage

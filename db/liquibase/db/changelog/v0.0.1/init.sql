@@ -37,4 +37,3 @@ comment on table STUDENT_DISCIPLINE is 'Связь студентов и дис�
 comment on column STUDENT_DISCIPLINE.ID is 'Идентификатор записи';
 comment on column STUDENT_DISCIPLINE.STUDENT is 'Студент';
 comment on column STUDENT_DISCIPLINE.DISCIPLINE is 'Дисциплина';
-

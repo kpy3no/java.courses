@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset kuzmin-ea:hibernate-lesson2-first context:dev
+--changeset kuzmin-ea:hibernate-lesson2-first
 create table "group" (
                                 ID bigserial not null
                                     constraint GROUP_PARAM_PK
